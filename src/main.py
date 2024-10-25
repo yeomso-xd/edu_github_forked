@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from add import add
 
 app = Flask(__name__)
 
@@ -8,11 +9,11 @@ def hello_world():
 
 
 @app.route('/add', methods=['POST'])
-def add():
+def add_endpoint():
     num1 = int(request.form['num1'])
     num2 = int(request.form['num2'])
 
-    return render_template('calu.html', result=(num1+num2))
+    return render_template('calu.html', result=add(num1,num2))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
